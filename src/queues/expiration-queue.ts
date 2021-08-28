@@ -1,6 +1,10 @@
 import Queue from 'bull';
 
-const expirationQueue = new Queue('order:expiration', {
+interface Payload {
+  orderId: string;
+}
+
+const expirationQueue = new Queue<Payload>('order:expiration', {
   redis: {
     host: process.env.REDIS_HOST,
   },
